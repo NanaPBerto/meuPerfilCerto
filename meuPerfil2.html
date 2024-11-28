@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perfil Interativo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="bg-light">
+        <div class="container mt-5">
+            <div class="card" id="profileCard">
+                <div class="card-body text-center">
+                    <img src="eu.jpg" alt="imagem de perfil" id="profileImage" class="rounded-circle mb-3" style="width: 150px;">
+                    <h3 id="profileName">Nome: Giordana</h3>
+                    <p id="profileAge">Idade: 16</p>
+                    <h5>Hobbies:</h5>
+                    <ul id="hobbiesList" class="list-group mb-3">
+                        <li class="list-group-item">Leitura</li>
+                        <li class="list-group-item">Pintura</li>
+                        <li class="list-group-item">Música</li>
+                    </ul>
+                    <button class="btn btn-primary me-2" onclick="alterarNome()">Alterar Nome</button>
+                    <button class="btn btn-primary me-2" onclick="adicionarHobby()">Adicionar Hobby</button>
+                    <button class="btn btn-primary me-2" onclick="mudarCorDeFundo()">Mudar Cor de Fundo</button>
+                    <button class="btn btn-primary me-2" onclick="alterarFoto()">Alterar a Foto</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            function alterarNome(){ //essa função cria um pop up que permite a inserção de um novo nome
+                const novoNome = prompt("Digite um Novo Nome");
+                if(novoNome){ //se esse novo nome existir ele pega o elemento de ID "profile name" e substitui o antigo nome pelo novo
+                    document.getElementById("profileName").textContent = "Nome: " + novoNome;
+                }
+            }
+            function adicionarHobby(){ 
+                const novoHobby = prompt("Digite um Novo Hobby"); //essa função cria um pop up que permite a inserção de um novo hobby
+                if(novoHobby){
+                    const li = document.createElement("li"); //cria uma constante que adiciona um novo item de lista
+                    li.textContent = novoHobby; //faz com que esse novo item tenha o nome que foi inserido
+                    li.className="list-group-item"; //faz com que esse novo li tenha a mesma classe do bootstrap que os outros que foram adicionados pelo html
+                    document.getElementById("hobbiesList").appendChild(li); //adiciona esse novo li à lista já existente
+                }
+            }   
+            function mudarCorDeFundo(){ //essa função faz com que a cor de fundo seja sorteada dentre as cores escolhidas e mude pra essa cor
+                const cores = ["#f8d7da", "#d1ecf1", "#d4edda", "#fff3cd", "#cce5ff"]; //cores escolhidas
+                const corAleatoria = cores[Math.floor(Math.random() * cores.length)];// faz a escolha aleatória da cor.  Se aqui eu colocasse um número fixo a cor não mudaria. Se a quantidade de cor não interfere no funcionamento pois não tem nada fixo
+                document.getElementById("profileCard").style.backgroundColor = corAleatoria; //pega a cor escolhida e põe ela no fundo do elemento de ID ""profileCard
+            }
+             function alterarFoto(){ //essa função cria um pop up que permite a inserção de um novo URL de uma foto
+                const novaFoto = prompt("Digite o URL da nova foto: ");
+                if(novaFoto){//se esse novo URL existir ele pega o elemento de ID "profileImage" e substitui o antigo URL pelo novo
+                    document.getElementById("profileImage").src = novaFoto;
+                }
+            }
+            
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
